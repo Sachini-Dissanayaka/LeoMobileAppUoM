@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "958697182449",
+    "firebase_url": "https://leo-app-uom.firebaseio.com",
+    "project_id": "leo-app-uom",
+    "storage_bucket": "leo-app-uom.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:958697182449:android:35bee3a9ff3da46824c550",
+        "android_client_info": {
+          "package_name": "com.UoMLeo.LeoApp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "958697182449-o2ivpsl222u6b9g4qdch0pp34j0uiibs.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.UoMLeo.LeoApp",
+            "certificate_hash": "62d831a453f02ccd6f29a6f662bf8fc2fac2fce0"
+          }
+        },
+        {
+          "client_id": "958697182449-tvvm5c257i2k46fqd3jke9geubmp98fv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA0OPnyPicLHEjH8IQ0Ir3nmk2aDZTdusw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "958697182449-tvvm5c257i2k46fqd3jke9geubmp98fv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
