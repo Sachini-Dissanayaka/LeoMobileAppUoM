@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'signIn.dart';
-import 'home.dart';
+import 'headHome.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -12,8 +12,8 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: new AppBar(
-        title: new Text('Leo'),
-        backgroundColor: Colors.blue,
+        title: new Text('Leo Store'),
+        backgroundColor: Colors.indigo[900],
       ),
       body: Container(
         color: Colors.white,
@@ -23,10 +23,10 @@ class _LoginPageState extends State<LoginPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               new Padding(padding: EdgeInsets.only(top: 50.0)),
-                      new Text('Welcome to Leo App',
+                      new Text('Welcome to Leo Store',
                       style: new TextStyle(color: Colors.blue[900] , fontSize: 35.0,fontWeight: FontWeight.bold),),
                       new Padding(padding: EdgeInsets.only(top: 50.0)),
-              Image(image: AssetImage("assets/leo logo.png"), height: 200, width: 200,),
+              Image(image: AssetImage("assets/leo logo.png"), height: 250, width: 250,),
               SizedBox(height: 50),
               _signInButton(),
               
@@ -45,7 +45,9 @@ class _LoginPageState extends State<LoginPage> {
           Navigator.of(context).push(
             MaterialPageRoute(
               builder: (context) {
-                return FirstScreen();
+                debugPrint(name);
+                debugPrint(email);
+                return NavHome();
               },
             ),
           );

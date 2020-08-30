@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class Home extends StatelessWidget {
+class Event extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -12,7 +12,7 @@ class Home extends StatelessWidget {
               child: Column(children: [
             new Padding(padding: EdgeInsets.only(top: 25.0)),
             new Text(
-              'See All Events..',
+              'Add Events..',
               style: new TextStyle(
                   color: Colors.blue[900],
                   fontSize: 25.0,
