@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 
 class Home extends StatelessWidget {
   @override
@@ -8,11 +9,11 @@ class Home extends StatelessWidget {
           padding: const EdgeInsets.all(30.0),
           color: Colors.white,
           child: SingleChildScrollView(
-            child: Center(
+            child:Center(
               child: Column(children: [
             new Padding(padding: EdgeInsets.only(top: 25.0)),
             new Text(
-              'See All Events..',
+              'All Events..',
               style: new TextStyle(
                   color: Colors.blue[900],
                   fontSize: 25.0,
@@ -24,3 +25,4 @@ class Home extends StatelessWidget {
     );
   }
 }
+

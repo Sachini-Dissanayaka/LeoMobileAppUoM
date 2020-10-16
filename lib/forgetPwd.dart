@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'auth.dart';
+import 'adminLogin.dart';
+import 'headHome.dart';
 
 class ForgetPwd extends StatefulWidget {
   @override
@@ -8,7 +11,39 @@ class ForgetPwd extends StatefulWidget {
 }
 
 class _ForgetState extends State<ForgetPwd> {
-  String email = "";
+  TextEditingController nameController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
+  final AuthService _auth = AuthService();
+  String error = "";
+
+  void _showDialog() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: new Text("Message Sent"),
+          content: new Text(
+              "A password reset link has been sent to ${nameController.text}"),
+          actions: <Widget>[
+            FlatButton(
+              child: new Text("Close",
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold)),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Admin()),
+                );
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,61 +51,123 @@ class _ForgetState extends State<ForgetPwd> {
         title: Text('Leo Store'),
         backgroundColor: Colors.indigo[900],
       ),
-      body: Center(
-        child:Padding(padding: EdgeInsets.only(top:50,left:20,right:20),
-        child:Column(
+      body: Container(
+          padding: EdgeInsets.all(10),
+          child: Form(
+              key: _formKey,
+              child: ListView(
+                children: <Widget>[
+                  Container(
+                      alignment: Alignment.center,
+                      padding: const EdgeInsets.all(30.0),
+                      child: Text(
+                        'We will mail you a link ... Please click on that link to reset your password',
+                        style: TextStyle(
+                            color: Colors.blue,
+                            fontWeight: FontWeight.w500,
+                            fontSize: 30),
+                      )),
+                  SizedBox(height: 30),
+                  Container(
+                    padding: EdgeInsets.all(10),
+                    child: TextFormField(
+                      controller: nameController,
+                      validator: (val) => val.isEmpty ? 'Enter an email' : null,
+                      decoration: InputDecoration(
+                          border: OutlineInputBorder(),
+                          labelText: 'Email Address',
+                          focusColor: Colors.indigo,
+                          hoverColor: Colors.indigo,
+                          fillColor: Colors.indigo),
+                    ),
+                  ),
+                  SizedBox(height: 20),
+                  Container(
+                      height: 50,
+                      padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
+                      child: RaisedButton(
+                        textColor: Colors.white,
+                        color: Colors.blue,
+                        child: Text('Submit'),
+                        onPressed: () async {
+                          await _auth
+                              .sendPasswordResetEmail(nameController.text);
+                          if (_formKey.currentState.validate()) {
+                            print("Password reset email sent");
+                            _showDialog();
+                          }
+                        },
+                      )),
+                  SizedBox(height: 12.0),
+                  Text(
+                    error,
+                    style: TextStyle(color: Colors.red, fontSize: 14.0),
+                  ),
+                ],
+              ))),
+      bottomNavigationBar: BottomAppBar(
+        child: Row(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            Text('We will mail you a link ... Please click on that link to reset your password',
-            style: TextStyle(color:Colors.indigo[500],fontSize: 20)),
-            Theme(data: ThemeData(
-              hintColor: Colors.indigo[500]
-            ),
-            child:Padding(padding: EdgeInsets.only(top:50,left:20,right:20), 
-            child:TextFormField(
-              validator:(value){
-                if(value.isEmpty){
-                  return "Please enter your email";
-                }
-                else{
-                  email=value;
-                }
-                return null;
-              },
-              style: TextStyle(color:Colors.white),
-              decoration: InputDecoration(
-                labelText: "Email",
-                border: OutlineInputBorder(
-                  borderRadius:BorderRadius.circular(15),
-                  borderSide : BorderSide(color: Colors.indigo[400],width: 1)
+            Expanded(
+              child: SizedBox(
+                height: 60,
+                child: Material(
+                  type: MaterialType.transparency,
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => NavHome()),
+                      );
+                    },
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Icon(Icons.home, color: Colors.black),
+                        Text(
+                          "Home",
+                          style: TextStyle(color: Colors.black54),
+                        )
+                      ],
+                    ),
+                  ),
                 ),
-                disabledBorder: OutlineInputBorder(
-                  borderRadius:BorderRadius.circular(15),
-                  borderSide : BorderSide(color: Colors.indigo[400],width: 1)
-                ),
-                enabledBorder: OutlineInputBorder(
-                  borderRadius:BorderRadius.circular(15),
-                  borderSide : BorderSide(color: Colors.indigo[400],width: 1)
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius:BorderRadius.circular(15),
-                  borderSide : BorderSide(color: Colors.indigo[400],width: 1)
-                )
               ),
-            ))
             ),
-            Padding(padding: EdgeInsets.only(left:20,right:20),
-            // child: RaisedButton(onPressed: (){
-            //   if(_formKey.CurrentState.validate()){
-            //     Future<String> check = LogIn();
-            //     if(check!=null){
-                  
-            //     }
-            //   }
-            // }
-            // ),
-        )
+            Expanded(
+              child: SizedBox(
+                height: 60,
+                child: Material(
+                  type: MaterialType.transparency,
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => NavHome()),
+                      );
+                    },
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Icon(Icons.calendar_today, color: Colors.black),
+                        Text(
+                          "Calendar",
+                          style: TextStyle(color: Colors.black54),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
           ],
-        ))
+        ),
+        shape: CircularNotchedRectangle(),
+        color: Colors.white,
       ),
     );
   }

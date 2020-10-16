@@ -13,7 +13,7 @@ class Dashboard extends StatelessWidget {
               child: Column(children: [
             new Padding(padding: EdgeInsets.only(top: 25.0)),
             new Text(
-              'See Upcoming Events..',
+              'Upcoming Events..',
               style: new TextStyle(
                   color: Colors.blue[900],
                   fontSize: 25.0,

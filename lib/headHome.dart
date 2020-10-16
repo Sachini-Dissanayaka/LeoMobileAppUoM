@@ -5,6 +5,7 @@ import 'Dashboard.dart';
 import 'signUp.dart';
 import 'adminLogin.dart';
 import 'register.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class NavHome extends StatefulWidget {
   @override
@@ -14,6 +15,25 @@ class NavHome extends StatefulWidget {
 class _NavHomeState extends State<NavHome> with SingleTickerProviderStateMixin {
   TabController _tabController;
   ScrollController _scrollController;
+
+  final String phone = 'tel:';
+
+  _callPhone() async {
+    if (await canLaunch(phone)) {
+      await launch(phone);
+    } else {
+      throw 'Could not Call Phone';
+    }
+  }
+
+  void _launchMapsUrl() async {
+    final url = 'https://maps.google.lk/';
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
 
   @override
   void initState() {
@@ -51,7 +71,7 @@ class _NavHomeState extends State<NavHome> with SingleTickerProviderStateMixin {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => Reg()),
+                      MaterialPageRoute(builder: (context) => Admin()),
                     );
                   },
                 ),
@@ -208,9 +228,53 @@ class _NavHomeState extends State<NavHome> with SingleTickerProviderStateMixin {
                       mainAxisSize: MainAxisSize.min,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        Icon(Icons.calendar_today, color: Colors.black),
+                        Icon(Icons.people, color: Colors.black),
                         Text(
-                          "Calendar",
+                          "Admin",
+                          style: TextStyle(color: Colors.black54),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            Expanded(
+              child: SizedBox(
+                height: 60,
+                child: Material(
+                  type: MaterialType.transparency,
+                  child: InkWell(
+                    onTap: _callPhone,
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Icon(Icons.phone, color: Colors.black),
+                        Text(
+                          "Call",
+                          style: TextStyle(color: Colors.black54),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            Expanded(
+              child: SizedBox(
+                height: 60,
+                child: Material(
+                  type: MaterialType.transparency,
+                  child: InkWell(
+                    onTap: _launchMapsUrl,
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Icon(Icons.map, color: Colors.black),
+                        Text(
+                          "Map",
                           style: TextStyle(color: Colors.black54),
                         )
                       ],
